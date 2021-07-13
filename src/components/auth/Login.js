@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export const Login = () => {
 
-    const onchange = () => {
-        
+    const [usuario, setusuario] = useState({
+        email: '',
+        password: ''
+    });
+    const { email, password } = usuario;
+    
+    const onchange = (e) => {
+        setusuario({
+            ...usuario,
+            [ e.target.name ]: e.target.value
+        });
+    };
+    
+    const onSubmit = (e) => {
+        e.preventDefault();
+
     };
     
     return (
@@ -11,7 +26,9 @@ export const Login = () => {
             <div className="contenedor-form sombra-dark">
                 <h1>Iniciar Sesión</h1>
 
-                <form>
+                <form
+                    onSubmit={ onSubmit }
+                >
                     <div className="campo-form">
                         <label htmlFor="email">Email</label>
                         <input 
@@ -19,6 +36,7 @@ export const Login = () => {
                             id="email"
                             name="email"
                             placeholder="Tu Email"
+                            value={ email }
                             onChange={ onchange }
                         />
                     </div>
@@ -30,6 +48,7 @@ export const Login = () => {
                             id="password"
                             name="password"
                             placeholder="Tu Password"
+                            value={ password }
                             onChange={ onchange }
                         />
                     </div>
@@ -42,7 +61,12 @@ export const Login = () => {
                         />
                     </div>
                 </form>
-                
+                <Link
+                    to="/nueva-cuenta"
+                    className="enlace-cuenta"
+                >
+                    Obtener Cuenta
+                </Link>                
             </div>
         </div>
     )
