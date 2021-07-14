@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import uuid from 'uuid';
-import { AGREGAR_PROYECTOS, FORMULARIO_PROYECTO, OBTENER_PROYECTOS, PROYECTO_ACTUAL, VALIDAR_FORMULARIO } from '../../types';
+import { AGREGAR_PROYECTOS, ELIMINAR_PROYECTO, FORMULARIO_PROYECTO, OBTENER_PROYECTOS, PROYECTO_ACTUAL, VALIDAR_FORMULARIO } from '../../types';
 import proyectoContext from './proyectoContext';
 import proyectoReducer from './proyectoReducer';
 
@@ -17,7 +17,7 @@ const ProyectoState = (props) => {
         proyectos: [],
         formulario: false,
         errorformulario: false,
-        proyecto: null
+        proyecto: null,
     }
 
     // Dispatch para ejecutar las acciones
@@ -40,30 +40,38 @@ const ProyectoState = (props) => {
     };
 
     // Agregar nuevo proyecto
-     const agregarProyecto = (proyecto) => {
-        proyecto.id = uuid.v4();
+    const agregarProyecto = (proyecto) => {
+    proyecto.id = uuid.v4();
 
-        // Insertar proyecto en el state
+    // Insertar proyecto en el state
+    dispatch({
+        type: AGREGAR_PROYECTOS,
+        payload: proyecto
+    })
+    };
+
+    // Valida el formulario por errores
+    const mostrarError = () => {
         dispatch({
-            type: AGREGAR_PROYECTOS,
-            payload: proyecto
+            type: VALIDAR_FORMULARIO
         })
-     };
+    };
 
-     // Valida el formulario por errores
-     const mostrarError = () => {
-         dispatch({
-             type: VALIDAR_FORMULARIO
-         })
-     };
+    // Selecciona el proyecto que el usuario dio click
+    const proyectoActual = (proyectoId) => {
+        dispatch({
+            type: PROYECTO_ACTUAL,
+            payload: proyectoId
+        })
+    };
 
-     // Selecciona el proyecto que el usuario dio click
-     const proyectoActual = (proyectoId) => {
-         dispatch({
-             type: PROYECTO_ACTUAL,
-             payload: proyectoId
-         })
-     };
+    const eliminarProyecto = (proyectoId) => {
+        dispatch({
+            type: ELIMINAR_PROYECTO,
+            payload: proyectoId
+        })
+    };
+
      
     return (
         <proyectoContext.Provider
@@ -76,7 +84,8 @@ const ProyectoState = (props) => {
                 obtenerProyectos,
                 agregarProyecto,
                 mostrarError,
-                proyectoActual
+                proyectoActual,
+                eliminarProyecto
             }}
         >
             { props.children }
