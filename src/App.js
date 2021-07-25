@@ -5,21 +5,23 @@ import { NuevaCuenta } from './components/auth/NuevaCuenta';
 import { Proyectos } from './components/proyectos/Proyectos';
 import ProyectoState from './context/proyectos/proyectoState';
 import TareaState from './context/tareas/tareaState';
+import AlertaState from './context/alertas/alertaState';
 
 function App() {
   return (
-    <Router>
-      <ProyectoState>
+    <ProyectoState>
         <TareaState>
-          <Switch>
-            <Route exact path="/" component={ Login } />
-            <Route exact path="/nueva-cuenta" component={ NuevaCuenta } />
-            <Route exact path="/proyectos" component={ Proyectos } />
-          </Switch>
+          <AlertaState>
+            <Router>
+              <Switch>
+                <Route exact path="/" component={ Login } />
+                <Route exact path="/nueva-cuenta" component={ NuevaCuenta } />
+                <Route exact path="/proyectos" component={ Proyectos } />
+              </Switch>
+            </Router>
+          </AlertaState>
         </TareaState>
       </ProyectoState>
-    </Router>
-    
   );
 }
 
