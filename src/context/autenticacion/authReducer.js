@@ -1,7 +1,7 @@
 import { REGISTRO_ERROR, REGISTRO_EXITOSO } from "../../types";
 
 
-export const authReducer = ( state, action ) => {
+export const AuthReducer = ( state, action ) => {
     switch (action.type) {
         case REGISTRO_EXITOSO:
             localStorage.setItem('token', action.payload.token);

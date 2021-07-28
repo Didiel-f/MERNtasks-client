@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import AlertaContext from '../../context/alertas/alertaContext';
-import authContext from '../../context/autenticacion/authContext';
+import AuthContext from '../../context/autenticacion/authContext';
 
 export const NuevaCuenta = () => {
 
@@ -9,7 +9,7 @@ export const NuevaCuenta = () => {
     const alertaContext = useContext(AlertaContext);
     const { alerta, mostrarAlerta } = alertaContext;
 
-    const authContext = useContext(authContext);
+    const authContext = useContext(AuthContext);
     const { registrarUsuario } = authContext;
 
     const [usuario, setusuario] = useState({

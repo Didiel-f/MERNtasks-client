@@ -1,7 +1,7 @@
 import { MOSTRAR_ALERTA, OCULTAR_ALERTA } from "../../types";
 
 
-export const reducer = (state, action) => {
+const reducer = (state, action) => {
     switch (action.type) {
         case MOSTRAR_ALERTA:
             return {
@@ -15,3 +15,5 @@ export const reducer = (state, action) => {
             return state;
     }
 };
+
+export default reducer;
