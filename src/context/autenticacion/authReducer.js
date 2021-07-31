@@ -1,4 +1,4 @@
-import { REGISTRO_ERROR, REGISTRO_EXITOSO } from "../../types";
+import { LOGIN_ERROR, REGISTRO_ERROR, REGISTRO_EXITOSO } from "../../types";
 
 
 export const AuthReducer = ( state, action ) => {
@@ -10,7 +10,10 @@ export const AuthReducer = ( state, action ) => {
                 autenticado: true,
                 mensaje: null
             }
+        
+        case LOGIN_ERROR:
         case REGISTRO_ERROR:
+            localStorage.removeItem('token');
             return {
                 ...state,
                 token: null,
