@@ -47,7 +47,7 @@ export const NuevoProyecto = () => {
                 className="btn btn-block btn-primario"
                 onClick={ mostrarFormulario }
             >
-                Nuevo Proyectoooooooooooooooooooooo
+                Nuevo Proyecto
             </button>
 
             {

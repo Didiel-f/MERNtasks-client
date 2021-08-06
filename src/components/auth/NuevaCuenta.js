@@ -22,7 +22,7 @@ export const NuevaCuenta = (props) => {
             mostrarAlerta( mensaje.msg, mensaje.categoria );
         }
 
-    }, [mensaje, autenticado, props.history, mostrarAlerta])
+    }, [mensaje, autenticado, props.history, mostrarAlerta]);
 
     const [usuario, setusuario] = useState({
         nombre: '',
